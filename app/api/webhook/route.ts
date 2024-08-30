@@ -33,8 +33,6 @@ const processSuccessfulPayment = async (
             customerId,
             status,
             subscriptionId,
-            totalnumber: total,
-            orderId,
         }
     })
 };
@@ -50,8 +48,7 @@ export async function POST(request: Request) {
 
         const data = JSON.parse(rawBody);
 
-        if (data.meta.event_name === 'subscription_payment_success' ||
-            data.meta.event_name === 'subscription_created'
+        if (data.meta.event_name === 'subscription_payment_success'
         ) {
             const {
                 id: subscriptionId,

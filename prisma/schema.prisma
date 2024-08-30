@@ -46,7 +46,5 @@ model forms {
 model subscriptions {
     subscriptionId String @id
     customerId String
-    orderId String
-    totalnumber Int
     status String
 }

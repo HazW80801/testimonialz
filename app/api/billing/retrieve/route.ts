@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
     try {
         const { subId } = await req.json();
-
         if (!subId) {
             return NextResponse.json({ success: false, error: "Subscription ID is required" }, { status: 400 });
         }

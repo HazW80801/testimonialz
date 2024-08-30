@@ -54,6 +54,7 @@ export async function POST(request: Request) {
                 id: subscriptionId,
                 attributes: {
                     customer_id: customerId,
+                    status,
                 },
             } = data.data;
             console.log(data)

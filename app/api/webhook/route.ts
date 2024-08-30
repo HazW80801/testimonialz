@@ -25,7 +25,7 @@ const processSuccessfulPayment = async (
     subscriptionId: string,
     customerId: string,
     orderId: string,
-    total: string,
+    total: number,
     status: string
 ) => {
     await prisma.subscriptions.create({
@@ -64,7 +64,7 @@ export async function POST(request: Request) {
             } = data.data;
 
             await processSuccessfulPayment(subscriptionId, customerId, orderId, total, status);
-
+            console.log(subscriptionId, customerId, orderId, total, status)
             return NextResponse.json({ message: 'Webhook processed successfully' }, { status: 200 });
         } else {
             return NextResponse.json({ message: 'Unexpected event type' }, { status: 400 });

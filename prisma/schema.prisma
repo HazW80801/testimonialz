@@ -47,6 +47,6 @@ model subscriptions {
     subscriptionId String @id
     customerId String
     orderId String
-    totalnumber String
+    totalnumber Int
     status String
 }

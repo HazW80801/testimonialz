@@ -80,7 +80,7 @@ export default function TestimonialsPage() {
                                 <DialogDescription>
                                     <div className="bg-black text-white py-10 px-6 text-sm rounded-lg">
                                         {`<script
-                                        src="http://localhost:3000/widget.js"
+                                        src="https://testimonialz-lake.vercel.app/widget.js"
                                         data-form-id=${formId}
                                         async
                                     ></script>`}

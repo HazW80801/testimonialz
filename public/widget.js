@@ -3,7 +3,7 @@
     const scriptElement = document.currentScript;
     if (!scriptElement) return; // Ensure currentScript is not null
     const formId = scriptElement.getAttribute('data-form-id');
-    const apiUrl = `http://localhost:3000/api/prisma/fetchTestimonials?formId=${formId}&publicT=true`;
+    const apiUrl = `https://testimonialz-lake.vercel.app/api/prisma/fetchTestimonials?formId=${formId}&publicT=true`;
 
     fetch(apiUrl)
         .then(response => response.json())

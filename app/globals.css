@@ -2,32 +2,138 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer components {
+  .smooth {
+    @apply duration-150 transition-all ease-in-out
   }
+  .button {
+    @apply px-8 py-3 bg-gray-100 text-black border border-black/10 shadow-lg shadow-black/10
+     rounded-lg smooth hover:opacity-80 w-full
+  }
+  .button_active {
+    @apply button bg-black text-white shadow-none
+  }
+  .form_logo {
+    @apply absolute top-0 left-0 h-16 w-16 rounded-lg 
+                object-center object-cover border border-black/10
+  }
+  .accordion_trigger {
+    @apply flex space-x-5 w-full text-left border-b border-black/10
+  }
+  .input {
+    @apply w-full p-2 outline-none bg-transparent border-b border-black/20 
+    smooth hover:border-black/50 text-[0.4cm]
+  }
+  .form-item {
+    @apply pt-12 px-6 rounded-xl smooth border relative border-black/20 hover:border-black/50 cursor-pointer shadow-lg shadow-gray-100
+  }
+  .formItem-option {
+    @apply cursor-pointer flex space-x-2 text-sm text-black/70 items-center
+     justify-center hover:text-black smooth
+  }
+  .form-wrapper {
+    @apply w-[60%] bg-[#ffffff] border border-black/10 shadow-lg 
+            shadow-[#05050510] my-3 py-12 px-6 items-center justify-center flex rounded-xl relative smooth
+  }
+
+  .testimonial {
+    @apply bg-white border border-black/10 pt-12 pb-4 px-6 items-center justify-between flex flex-col
+    text-black rounded-xl my-4 w-auto shadow-lg shadow-gray-100 relative
+  }
+ 
+}
+.testimonial-author-details {
+  @apply italic pt-12 flex space-x-2 items-start justify-start w-full
+}
+ .testimonial-author-name {
+    @apply  text-sm font-bold
+  }
+  .testimonial-author-image{
+    @apply rounded-full h-14 w-14 object-cover object-center
+  }
+  .testimonial-author-label {
+    @apply  text-sm
+  }
+  .testimonial-labels-wrap {
+    @apply self-center
+  }
+  .testimonial-content_text {
+    @apply text-lg text-black leading-[0.6cm] font-medium italic
+  }
+  .testimonial-content_video {
+    @apply w-full
+  }
+  .testimonial-widget {
+    display: grid; 
+    padding: 20px; 
+    background-color: #f9f9f9; 
+    border: 1px solid #ccc; 
+    @apply gap-x-4 min-h-screen grid-cols-1
+     md:grid-cols-2 lg:grid-cols-3 z-50 overflow-y-scroll
 }

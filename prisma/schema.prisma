@@ -48,4 +48,5 @@ model subscriptions {
     customerId Int
     status String
     user String
+    plan String
 }

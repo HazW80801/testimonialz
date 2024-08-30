@@ -22,10 +22,9 @@ export async function POST(req: Request) {
         }
 
         const data = await response.json();
-        console.log(data)
-        // const status = data.attributes.status;
+        const status = data.data.attributes.status;
 
-        return NextResponse.json({ success: true, data });
+        return NextResponse.json({ success: true, status });
     } catch (error: any) {
         return NextResponse.json({ success: false, error: error.message || "Internal Server Error" }, { status: 500 });
     }

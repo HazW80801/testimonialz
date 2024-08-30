@@ -17,8 +17,8 @@ export default function usePlan() {
         const response = await axios.post("/api/billing/retrieve", {
             subId,
         })
-        console.log("response is: ", response)
-        // setStatus(response.data.status)
+        const result = response.data
+        setStatus(result.status)
         setLoading(false)
     }
 

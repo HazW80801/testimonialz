@@ -24,6 +24,7 @@ const verifySignature = (rawBody: any, signature: any) => {
 const processSuccessfulPayment = async (
     subscriptionId: string,
     customerId: number,
+    plan: string,
     status: string,
     userId: any
 ) => {
@@ -33,6 +34,7 @@ const processSuccessfulPayment = async (
             status,
             subscriptionId,
             user: userId.toString(),
+            plan,
         }
     })
 };
@@ -55,11 +57,12 @@ export async function POST(request: Request) {
                 attributes: {
                     customer_id: customerId,
                     status,
+                    variant_name: plan
                 },
             } = data.data;
             console.log(data)
             const { userId } = data.meta.custom_data
-            await processSuccessfulPayment(subscriptionId, customerId, status, userId);
+            await processSuccessfulPayment(subscriptionId, customerId, plan, status, userId);
             return NextResponse.json({ message: 'Webhook processed successfully' }, { status: 200 });
         } else {
             return NextResponse.json({ message: 'Unexpected event type' }, { status: 400 });

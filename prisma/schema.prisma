@@ -42,3 +42,11 @@ model forms {
   formThanksDetails Json
   created_at DateTime @default(now()) @db.Timestamptz
 }
+
+model subscriptions {
+    subscriptionId String @id
+    customerId String
+    orderId String
+    totalnumber String
+    status String
+}

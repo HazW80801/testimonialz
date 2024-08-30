@@ -1,4 +1,3 @@
-// app/api/webhooks/lemonsqueezy/route.js
 
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';

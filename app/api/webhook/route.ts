@@ -23,7 +23,7 @@ const verifySignature = (rawBody: any, signature: any) => {
 
 const processSuccessfulPayment = async (
     subscriptionId: string,
-    customerId: string,
+    customerId: number,
     orderId: string,
     total: number,
     status: string

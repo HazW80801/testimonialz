@@ -45,6 +45,6 @@ model forms {
 
 model subscriptions {
     subscriptionId String @id
-    customerId String
+    customerId Int
     status String
 }

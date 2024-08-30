@@ -1,16 +1,21 @@
 "use client"
 
+import useUser from "@/hooks/useUser";
+import { supabase } from "@/supabaseClient";
 import { useRouter } from "next/navigation";
 
 export default function PricingPage() {
     const router = useRouter()
+    const [user] = useUser()
     async function createCheckout() {
+        if (!user) router.push("/signin")
         try {
             const response = await fetch('/api/billing/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                body: JSON.stringify({ userId: user!.id })
             });
             const data = await response.json();
             if (!response.ok) {

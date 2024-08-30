@@ -24,15 +24,15 @@ const verifySignature = (rawBody: any, signature: any) => {
 const processSuccessfulPayment = async (
     subscriptionId: string,
     customerId: number,
-    orderId: string,
-    total: number,
-    status: string
+    status: string,
+    userId: any
 ) => {
     await prisma.subscriptions.create({
         data: {
             customerId,
             status,
             subscriptionId,
+            user: userId.toString(),
         }
     })
 };
@@ -59,9 +59,8 @@ export async function POST(request: Request) {
                     status,
                 },
             } = data.data;
-
-            await processSuccessfulPayment(subscriptionId, customerId, orderId, total, status);
-            console.log(subscriptionId, customerId, orderId, total, status)
+            const { userId } = data.meta.custom_data
+            await processSuccessfulPayment(subscriptionId, customerId, status, userId);
             return NextResponse.json({ message: 'Webhook processed successfully' }, { status: 200 });
         } else {
             return NextResponse.json({ message: 'Unexpected event type' }, { status: 400 });

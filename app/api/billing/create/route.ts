@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
+    const { userId } = await req.json()
     try {
         const response = await fetch('https://api.lemonsqueezy.com/v1/checkouts', {
             method: 'POST',
@@ -12,6 +13,13 @@ export async function POST(req: Request) {
             body: JSON.stringify({
                 data: {
                     type: "checkouts",
+                    attributes: {
+                        "checkout_data": {
+                            "custom": {
+                                "userId": userId
+                            }
+                        },
+                    },
                     relationships: {
                         "store": {
                             "data": {

@@ -47,4 +47,5 @@ model subscriptions {
     subscriptionId String @id
     customerId Int
     status String
+    user String
 }

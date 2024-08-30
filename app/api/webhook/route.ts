@@ -59,6 +59,7 @@ export async function POST(request: Request) {
                     status,
                 },
             } = data.data;
+            console.log(data)
             const { userId } = data.meta.custom_data
             await processSuccessfulPayment(subscriptionId, customerId, status, userId);
             return NextResponse.json({ message: 'Webhook processed successfully' }, { status: 200 });

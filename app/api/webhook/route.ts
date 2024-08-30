@@ -48,15 +48,12 @@ export async function POST(request: Request) {
 
         const data = JSON.parse(rawBody);
 
-        if (data.meta.event_name === 'subscription_payment_success'
+        if (data.meta.event_name === 'subscription_created'
         ) {
             const {
                 id: subscriptionId,
                 attributes: {
                     customer_id: customerId,
-                    order_id: orderId,
-                    total,
-                    status,
                 },
             } = data.data;
             console.log(data)

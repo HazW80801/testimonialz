@@ -14,6 +14,11 @@ export default function usePlan() {
     const retrievePlan = async () => {
         if (!user) return;
         let subId = await fetchUserSubscription(user.id)
+        if (!subId) {
+            setStatus("no_plan")
+            setLoading(false)
+            return;
+        }
         const response = await axios.post("/api/billing/retrieve", {
             subId,
         })

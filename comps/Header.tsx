@@ -10,10 +10,17 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import useUser from "@/hooks/useUser";
+import { supabase } from "@/supabaseClient";
 import Link from "next/link";
+import { redirect, useRouter } from "next/navigation";
 
 export default function Header() {
     const [user] = useUser()
+    const router = useRouter()
+    const signOut = async () => {
+        await supabase.auth.signOut()
+        router.push("/signin")
+    }
     return (
         <div className="w-full py-4 px-6 items-center flex z-50 bg-opacity-20 backdrop-blur-lg backdrop-filter filter
          justify-between border-b border-black/10 sticky top-0 bg-white">
@@ -31,7 +38,7 @@ export default function Header() {
                     <DropdownMenuItem>plans</DropdownMenuItem>
                     <DropdownMenuItem>usage</DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>signout</DropdownMenuItem>
+                    <DropdownMenuItem onClick={signOut} >signout</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
         </div>

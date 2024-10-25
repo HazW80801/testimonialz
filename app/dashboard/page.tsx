@@ -95,6 +95,10 @@ export default function DashboardPage() {
       setTimeout(() => setCopied(false), 2000);
     });
   };
+  const collectionFormUrl = (formId: string) => {
+    return `${window.location.origin}/f/${formId}`
+  }
+
 
   return (
     <div className="w-full min-h-screen">
@@ -170,17 +174,12 @@ export default function DashboardPage() {
                             <div className="flex items-center">
                               <button
                                 onClick={() =>
-                                  copyToClipboard(
-                                    `http://localhost:3000/f/${form.id}`
-                                  )
+                                  copyToClipboard(collectionFormUrl(form.id))
                                 }
                                 className="w-full text-left flex justify-between p-2 bg-gray-100
                                                                  rounded-md hover:bg-gray-200 smooth"
                               >
-                                {`http://localhost:3000/f/${form.id.substring(
-                                  1,
-                                  15
-                                )}...`}
+                                {collectionFormUrl(form.id)}
                                 {copied ? (
                                   <Check className="w-4 h-4" />
                                 ) : (
@@ -195,17 +194,17 @@ export default function DashboardPage() {
                             </p>
                             <div className="flex space-x-4">
                               <FacebookShareButton
-                                url={`http://localhost:3000/f/${form.id}`}
+                                url={collectionFormUrl(form.id)}
                               >
                                 <Facebook className="w-6 h-6 text-blue-600 hover:text-blue-700" />
                               </FacebookShareButton>
                               <TwitterShareButton
-                                url={`http://localhost:3000/f/${form.id}`}
+                                url={collectionFormUrl(form.id)}
                               >
                                 <Twitter className="w-6 h-6 text-blue-400 hover:text-blue-500" />
                               </TwitterShareButton>
                               <LinkedinShareButton
-                                url={`http://localhost:3000/f/${form.id}`}
+                                url={collectionFormUrl(form.id)}
                               >
                                 <Linkedin className="w-6 h-6 text-blue-700 hover:text-blue-800" />
                               </LinkedinShareButton>

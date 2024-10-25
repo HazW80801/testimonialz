@@ -6,6 +6,7 @@ import { prisma } from "@/prismaClient";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import { useState } from "react";
+import { CldUploadWidget } from "next-cloudinary";
 
 export default function CustomerDetails() {
     const FormDesign = useRecoilValue(FormDesignState);
@@ -158,12 +159,31 @@ export default function CustomerDetails() {
                         <label htmlFor="photo" className="block text-sm font-medium text-gray-700">
                             Photo {FormCustomerDetails.userPhoto.required && <span className="text-red-500">*</span>}
                         </label>
-                        <input type="file" id="photo" name="photo"
-                            accept="image/*" className="mt-1 block w-full"
-                            required={FormCustomerDetails.userPhoto.required}
-                            onChange={(e) => handleInputChange(e, 'userPhoto')}
+                        <div className=" justify-between items-center flex w-full">
+                            <CldUploadWidget
+                                uploadPreset="preset"
+                                onSuccess={(result: any) => {
+                                    setFormCustomerDetails(prevState => ({
+                                        ...prevState,
+                                        userPhoto: {
+                                            ...FormCustomerDetails.userPhoto,
+                                            content: result.info.secure_url // Set the content to the uploaded image URL
+                                        }
+                                    }));
+                                }
+                                }
+                            >
+                                {({ open }) => (
+                                    <button onClick={() => open()}
+                                        className="button w-[30%] py-2 px-1">
+                                        {FormCustomerDetails.userPhoto.content ?
+                                            "replace image" : "upload image"}
+                                    </button>
+                                )}
+                            </CldUploadWidget>
+                            <img src={FormCustomerDetails.userPhoto.content} className="h-28 w-28" />
 
-                        />
+                        </div>
                     </div>
                 )}
                 {FormCustomerDetails.companyName.enabled && (
